@@ -45,24 +45,6 @@
       </geometry>
     </visual>
   </link>
-  <!-- <link name="circuitry_back">
-    <inertial>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <mass value="1" />
-    </inertial>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.15 0.2 0.03"/>
-      </geometry>
-    </collision>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <box size="0.15 0.2 0.03"/>
-      </geometry>
-    </visual>
-  </link> -->
   <link name="sensor_laser">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -85,18 +67,8 @@
       </geometry>
     </collision>
   </link>
-  <!-- <joint name="joint_circuitry_back" type="fixed">
-    <origin xyz="0.15 0 -0.1" rpy="0 0 0"/>
-    <parent link="link_chassis"/>
-    <child link="circuitry_back"/>
-  </joint> -->
-  <joint name="joint_sensor_laser" type="fixed">
-    <origin xyz="-0.15 0 0.05" rpy="0 0 0"/>
-    <parent link="link_chassis"/>
-    <child link="sensor_laser"/>
-  </joint>
   
-  <link name="back">
+  <link name="circuitry_back">
     <inertial>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <mass value="1" />
@@ -118,10 +90,46 @@
       </geometry>
     </collision>
   </link>
-  <joint name="joint_back" type="fixed">
+ <sensor name='camera1' type='camera'>
+    <camera name="head">
+      <horizontal_fov>1.3962634</horizontal_fov>
+      <image>
+        <width>800</width>
+        <height>800</height>
+        <format>R8G8B8</format>
+      </image>
+      <clip>
+        <near>0.02</near>
+        <far>300</far>
+      </clip>
+    </camera>
+    <always_on>1</always_on>
+    <update_rate>30</update_rate>
+    <visualize>1</visualize>
+    <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+    <alwaysOn>true</alwaysOn>
+    <updateRate>0.0</updateRate>
+    <cameraName>iris/camera</cameraName>
+    <imageTopicName>image_raw</imageTopicName>
+    <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+    <frameName>camera_link</frameName>
+    <hackBaseline>0.07</hackBaseline>
+    <distortionK1>0.0</distortionK1>
+    <distortionK2>0.0</distortionK2>
+    <distortionK3>0.0</distortionK3>
+    <distortionT1>0.0</distortionT1>
+    <distortionT2>0.0</distortionT2>
+  </plugin>
+  </sensor>
+  <joint name="joint_sensor_laser" type="fixed">
+    <origin xyz="-0.15 0 0.05" rpy="0 0 0"/>
+    <parent link="link_chassis"/>
+    <child link="sensor_laser"/>
+  </joint>
+  <joint name="joint_circuitry_back" type="fixed">
     <origin xyz="0.15 0 0.05" rpy="0 0 0"/>
     <parent link="link_chassis"/>
-    <child link="back"/>
+    <child link="circuitry_back"/>
   </joint>
 
   <xacro:link_wheel name="link_right_wheel" />
