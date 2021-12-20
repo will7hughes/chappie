@@ -11,9 +11,9 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
     <!-- The semantic description that corresponds to the URDF -->
-    <param name="robot_description_semantic" textfile="$(find chappie)/src/urdf/chappie.srdf"/>
+    <param name="robot_description_semantic" textfile="$(find chappie)/src/urdf/semantics.srdf"/>
 
   <!-- Show in Rviz   -->
-  <node name="rviz" pkg="rviz" type="rviz" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find chappie)/rviz/default.rviz" />
 
 </launch>
