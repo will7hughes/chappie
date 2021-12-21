@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+    <param name="des_x" value="$(arg x)" />
+    <param name="des_y" value="$(arg y)" />
+    <node pkg="chappie" type="go_to_point.py" name="go_to_point" output="screen" />
+</launch>

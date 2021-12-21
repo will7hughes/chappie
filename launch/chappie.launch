@@ -1,0 +1,6 @@
+
+<launch>  
+  <include file="$(find chappie)/launch/behaviors.launch"/>
+  <include file="$(find chappie)/launch/view_model_rviz_gazebo.launch"/>
+</launch>
+

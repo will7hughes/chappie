@@ -30,3 +30,4 @@
     <distortionT2>0.0</distortionT2>
   </plugin>
   </sensor>
+  rosrun teleop_twist_keyboard teleop_twist_keyboard.py
